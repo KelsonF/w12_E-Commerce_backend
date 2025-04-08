@@ -1,4 +1,4 @@
-import { Button } from "@/components/checkout/Button/Button";
+import { Button, ButtonType } from "@/components/checkout/Button/Button";
 import { Container } from "@/components/shared/Container";
 import { Input } from "@/components/checkout/Input/Input";
 
@@ -14,7 +14,7 @@ export default function LoginPage() {
         <Input placeholder="Email" type="email" />
         <Input placeholder="Password" type="password" />
         <div className="w-full flex justify-center">
-          <Button placeholder="Submit" />
+          <Button placeholder="Submit" style={ButtonType.PRIMARY} />
         </div>
       </form>
     </Container>
