@@ -2,12 +2,14 @@ import { Container } from "@/components/shared/Container";
 import { Img } from "@/components/shared/Img";
 import { PurchaseButton } from "@/components/product-list/purchasebtn";
 import { AddToCart } from "@/components/product-list/addtocart";
+import { Navbar } from "@/components/shared/Navbar/Navbar";
 import placeholderimage from "@/assets/placeholderimg.png";
 
 export default function ProductList() {
   return (
+
     <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center p-4">
         <Container>
             <Img source={placeholderimage.src} w={144} h={144}/>
             <div className="flex flex-col items-left gap-1 justify-start">
