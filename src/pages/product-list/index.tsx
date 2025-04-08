@@ -2,7 +2,6 @@ import { Container } from "@/components/shared/Container";
 import { Img } from "@/components/shared/Img";
 import { PurchaseButton } from "@/components/product-list/purchasebtn";
 import { AddToCart } from "@/components/product-list/addtocart";
-import { Navbar } from "@/components/shared/Navbar/Navbar";
 import placeholderimage from "@/assets/placeholderimg.png";
 
 export default function ProductList() {

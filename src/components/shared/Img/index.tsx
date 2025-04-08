@@ -14,7 +14,7 @@ function Img({ source, placeholder, w, h}: ImgProps) {
       alt={placeholder || 'Image'}
       width={w}
       height={h}
-      className="object-cover w-36 h-36"
+      className="object-cover"
     />
   );
 }
