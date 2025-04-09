@@ -43,7 +43,7 @@ export default function Summary(){
             <FlexContainer>
             <div className="flex flex-col items-center w-full p-4 gap-4">
             <Button placeholder="Pay" style={ButtonType.PRIMARY} />
-            <Back placeholder="Back" ref="/" />
+            <Back placeholder="Back" ref="/payment-option" />
             </div>
 
             </FlexContainer>
@@ -51,6 +51,6 @@ export default function Summary(){
       
         </div>
     );
-//back route wasn't added yet because "/payment-option" wasn't created yet
+
 
 }
