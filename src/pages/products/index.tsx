@@ -2,7 +2,7 @@ import { Container } from "@/components/shared/Container";
 import { Img } from "@/components/shared/Img";
 import { PurchaseButton } from "@/components/product-list/purchasebtn";
 import { AddToCart } from "@/components/product-list/addtocart";
-import { productsQuery } from "@/infrastructure/api/productsQuery";
+import { productsQuery } from "@/infrastructure/api/queries/productsQuery";
 import placeholderimage from "@/assets/placeholderimg.png";
 import { ErrorComponent } from "@/components/shared/Error/Error";
 import { LoadingComponent } from "@/components/shared/Loading/Loading";

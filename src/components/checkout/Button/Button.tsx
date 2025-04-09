@@ -1,7 +1,7 @@
 type ButtonProps = {
   placeholder?: string;
   style: ButtonType;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 enum ButtonType {
   PRIMARY = "PRIMARY",
@@ -13,8 +13,12 @@ const buttonStyles: Record<ButtonType, string> = {
   [ButtonType.SECONDARY]: "bg-none text-black py-3 px-4 rounded w-full",
 };
 
-function Button({ placeholder, style }: ButtonProps) {
-  return <button className={buttonStyles[style]}>{placeholder}</button>;
+function Button({ placeholder, style, ...rest }: ButtonProps) {
+  return (
+    <button {...rest} className={buttonStyles[style as ButtonType]}>
+      {placeholder}
+    </button>
+  );
 }
 
 export { Button, ButtonType };
