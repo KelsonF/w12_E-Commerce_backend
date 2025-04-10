@@ -1,16 +1,23 @@
 import { Container } from "@/components/shared/Container";
 import { Img } from "@/components/shared/Img";
 import { PurchaseButton } from "@/components/product-list/purchasebtn";
-import { AddToCart } from "@/components/product-list/addtocart";
 import { productsQuery } from "@/infrastructure/api/queries/productsQuery";
 import placeholderimage from "@/assets/placeholderimg.png";
 import { ErrorComponent } from "@/components/shared/Error/Error";
 import { LoadingComponent } from "@/components/shared/Loading/Loading";
 import { useRouter } from "next/router";
+import { useCheckout } from "@/application/providers/CheckoutProvider";
+import { Product } from "@/domain/models/Product";
+import { useEffect } from "react";
 
 export default function ProductList() {
   const { data, isLoading, isError } = productsQuery();
+  const { cart, setCart } = useCheckout();
   const router = useRouter();
+
+  useEffect(() => {
+    console.log("Cart updated:", cart);
+  }, [cart]);
 
   if (isLoading) {
     return <LoadingComponent />;
@@ -22,6 +29,11 @@ export default function ProductList() {
 
   const handleRouter = (id: string) => {
     router.push(`/products/${encodeURIComponent(id)}`);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.stopPropagation();
+    setCart((prev) => [...prev, product]);
   };
 
   return (
@@ -52,7 +64,12 @@ export default function ProductList() {
               </p>
               <div className="flex flex-row items-center gap-3 mt-2">
                 <PurchaseButton placeholder="Purchase" />
-                <AddToCart placeholder="🛒" />
+                <button
+                  className="bg-[#D21706] text-white px-1.5 py-1.5 rounded"
+                  onClick={(e) => handleAddToCart(e, product)}
+                >
+                  🛒
+                </button>
               </div>
             </div>
           </li>

@@ -1,3 +1,10 @@
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
 export default function Home() {
-  return <h1>Hello World</h1>
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/products");
+  }, []);
 }
