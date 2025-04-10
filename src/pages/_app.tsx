@@ -1,9 +1,10 @@
-import '@/styles/globals.css'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { AppProps } from 'next/app'
+import "@/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CheckoutProvider } from "@/application/providers/CheckoutProvider";
+import type { AppProps } from "next/app";
 
 function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
 const queryClient = new QueryClient({
@@ -12,12 +13,14 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
-})
+});
 
 export default function AppWithProviders(appProps: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <App {...appProps} />
+      <CheckoutProvider>
+        <App {...appProps} />
+      </CheckoutProvider>
     </QueryClientProvider>
-  )
+  );
 }
