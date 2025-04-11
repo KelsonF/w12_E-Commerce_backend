@@ -15,7 +15,7 @@ export default function Address() {
   const [zipcode, setZipcode] = useState("");
 
   const handleBack = () => {
-    router.back();
+    router.push("/auth/login");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,7 +27,7 @@ export default function Address() {
       zipcode,
     });
 
-    router.push("/checkout/confirmation");
+    router.push("/checkout/payment-option");
   };
 
   return (

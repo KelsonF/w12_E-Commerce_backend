@@ -43,7 +43,7 @@ export default function Summary(){
             <FlexContainer>
             <div className="flex flex-col items-center w-full p-4 gap-4">
             <Button placeholder="Pay" style={ButtonType.PRIMARY} />
-            <Back placeholder="Back" ref="/payment-option" />
+            <Back placeholder="Back" ref="/checkout/payment-option" />
             </div>
 
             </FlexContainer>
