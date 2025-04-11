@@ -8,34 +8,39 @@ import { Back } from "@/components/product/back";
 import { useCheckout } from "@/application/providers/CheckoutProvider";
 
 export default function Summary() {
-  const { cart } = useCheckout();
+  const { cart, address, paymentOption } = useCheckout();
+
+  const total = cart.reduce((acc, prod) => acc + prod.price, 0);
 
   return (
-    <div className="p-2 ">
+    <div className="p-2">
       <LeftContainer>
         <p className="text-3xl text-[#111827] font-[Inter] font-bold pt-2">
           Summary
         </p>
       </LeftContainer>
       <Container>
-        <div className="flex flex-row justify-evenly place-items-center p-2 gap-4">
-          {cart.map((item) => (
-            <>
-              <Img source={placeholderimage.src} w={147} h={124} />
-              <Container>
-                <p className="text-xl text-[#111827] font-[Inter] font-bold">
-                  {item.name}
-                </p>
-                <p className="text-base text-[#4B5563] font-[Inter] font-light">
-                  $ {item.price}
-                </p>
-                <p className="text-base text-[#4B5563] font-[Inter] font-light">
-                  Quantity: {item.stock}
-                </p>
-              </Container>
-            </>
-          ))}
-        </div>
+        {cart.map((prod) => (
+          <div
+            key={prod.id}
+            className="flex flex-row justify-evenly place-items-center p-2 gap-4"
+          >
+            <Img
+              source={prod.image_path || placeholderimage.src} 
+              w={147}
+              h={124}
+            />
+            <Container>
+              <p className="text-xl text-[#111827] font-[Inter] font-bold">
+                {prod.name}
+              </p>
+              <p className="text-base text-[#4B5563] font-[Inter] font-light">
+                ${Number(prod.price).toFixed(2)}
+              </p>
+            
+            </Container>
+          </div>
+        ))}
       </Container>
       <div className="flex flex-col w-[50%] items-center">
         <LeftContainer>
@@ -43,31 +48,42 @@ export default function Summary() {
             Payment amount
           </p>
           <p className="text-base text-[#4B5563] font-[Inter] font-light">
-            $ 0.00
+            ${Number(total).toFixed(2)}
           </p>
 
           <p className="text-xl text-[#111827] font-[Inter] font-bold pb-4">
             Delivery address
           </p>
-          <p className="text-base text-[#4B5563] font-[Inter] font-light">
-            John Doe
-          </p>
-          <p className="text-base text-[#4B5563] font-[Inter] font-light">
-            Baker street 225 Olso 90123
-          </p>
+          {address ? (
+            <>
+              <p className="text-base text-[#4B5563] font-[Inter] font-light">
+                {address.name}
+              </p>
+              <p className="text-base text-[#4B5563] font-[Inter] font-light">
+                {address.address}
+              </p>
+              <p className="text-base text-[#4B5563] font-[Inter] font-light">
+                {address.city} {address.zipcode}
+              </p>
+            </>
+          ) : (
+            <p className="text-base text-[#4B5563] font-[Inter] font-light">
+              No address provided
+            </p>
+          )}
 
           <p className="text-xl text-[#111827] font-[Inter] font-bold pb-4">
             Payment option
           </p>
           <p className="text-base text-[#4B5563] font-[Inter] font-light">
-            Credit card
+            {paymentOption === "CREDIT" ? "Credit card" : paymentOption}
           </p>
         </LeftContainer>
       </div>
       <FlexContainer>
         <div className="flex flex-col items-center w-full p-4 gap-4">
           <Button placeholder="Pay" style={ButtonType.PRIMARY} />
-          <Back placeholder="Back" ref="/payment-option" />
+          <Back placeholder="Back" ref="/checkout/payment-option" />
         </div>
       </FlexContainer>
     </div>
