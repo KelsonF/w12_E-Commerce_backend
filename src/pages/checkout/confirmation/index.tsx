@@ -2,13 +2,13 @@ import { Container } from "@/components/shared/Container";
 import { FlexContainer } from "@/components/shared/FlexContainer";
 import { Img } from "@/components/shared/Img";
 import { LinkButton } from "@/components/shared/LinkButton";
-import placeholderimage from "@/assets/placeholderimg.png";
+
 
 export default function Confirmation(){
     return(
         <Container>
             <FlexContainer>
-                <Img source={placeholderimage.src} w={312} h={204} />  
+                <Img source="/images/bags.webp" w={312} h={204} />  
                 <FlexContainer> 
                     <p className="text-3xl text-[#111827] font-[Inter] font-bold pt-2">Thanks for shopping!</p>
                     <p className="text-xl text-[#4B5563] font-[Inter] font-light p-2 pb-4">

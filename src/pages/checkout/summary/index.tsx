@@ -32,7 +32,7 @@ export default function Summary() {
             className="flex flex-row justify-evenly place-items-center p-2 gap-4"
           >
             <Img
-              source={prod.image_path || placeholderimage.src} 
+              source={prod.image_path} 
               w={147}
               h={124}
             />

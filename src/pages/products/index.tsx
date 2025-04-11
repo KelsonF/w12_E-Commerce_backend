@@ -55,7 +55,7 @@ export default function ProductList() {
           >
             <div className="bg-gray-100 p-4 flex items-center justify-center">
               <Img
-                source={product.image_path || placeholderimage.src}
+                source={product.image_path}
                 w={144}
                 h={144}
               />
