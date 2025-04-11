@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   CheckoutContext,
   CheckoutContextType,
 } from "../contexts/checkoutContext";
+import { LocalStorage } from "@/domain/services/LocalStorageService";
 
 export const CheckoutProvider = ({
   children,
@@ -14,6 +15,18 @@ export const CheckoutProvider = ({
   const [address, setAddress] = useState<CheckoutContextType["address"]>(null);
   const [paymentOption, setPaymentOption] =
     useState<CheckoutContextType["paymentOption"]>(null);
+
+  useEffect(() => {
+    const savedCart: CheckoutContextType["cart"] =
+      LocalStorage.instance.read("cart") || [];
+    if (savedCart) {
+      setCart(savedCart);
+    }
+  }, []);
+
+  useEffect(() => {
+    LocalStorage.instance.save("cart", cart);
+  }, [cart]);
 
   return (
     <CheckoutContext.Provider
