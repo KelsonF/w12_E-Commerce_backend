@@ -35,6 +35,11 @@ export default function ProductList() {
     e.stopPropagation();
     setCart((prev) => [...prev, product]);
   };
+  const handlePurchaseNow = (e: React.MouseEvent, product: Product) => {
+    e.stopPropagation();
+    setCart([product]); 
+    router.push('/cart'); 
+  };
 
   return (
     <Container>
@@ -63,7 +68,10 @@ export default function ProductList() {
                 ${Number(product.price).toFixed(2)}
               </p>
               <div className="flex flex-row items-center gap-3 mt-2">
-                <PurchaseButton placeholder="Purchase" />
+              <PurchaseButton 
+                placeholder="Purchase" 
+                onClick={(e) => handlePurchaseNow(e, product)}
+                />
                 <button
                   className="bg-[#D21706] text-white px-1.5 py-1.5 rounded"
                   onClick={(e) => handleAddToCart(e, product)}
