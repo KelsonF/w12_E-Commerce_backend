@@ -30,7 +30,7 @@ export default function Cart() {
               key={index}
               className="flex flex-col items-center justify-center w-full p-2 bg-white rounded-lg shadow-md"
             >
-              <Img source={placeholderimage} w={147} h={124} />
+              <Img source={item.image_path} w={147} h={124} />
               <p className="text-xl text-[#111827] font-[Inter] font-bold">
                 {item.name}
               </p>
