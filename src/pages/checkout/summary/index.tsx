@@ -6,8 +6,14 @@ import { FlexContainer } from "@/components/shared/FlexContainer";
 import { Button, ButtonType } from "@/components/checkout/Button/Button";
 import { Back } from "@/components/product/back";
 import { useCheckout } from "@/application/providers/CheckoutProvider";
+import router from "next/router";
 
 export default function Summary() {
+
+    const handleSubmit = () => {
+        router.push("/checkout/confirmation");
+      };
+    
   const { cart, address, paymentOption } = useCheckout();
 
   const total = cart.reduce((acc, prod) => acc + prod.price, 0);
@@ -82,7 +88,7 @@ export default function Summary() {
       </div>
       <FlexContainer>
         <div className="flex flex-col items-center w-full p-4 gap-4">
-          <Button placeholder="Pay" style={ButtonType.PRIMARY} />
+          <Button placeholder="Pay" style={ButtonType.PRIMARY} onClick={handleSubmit}/>
           <Back placeholder="Back" ref="/checkout/payment-option" />
         </div>
       </FlexContainer>
