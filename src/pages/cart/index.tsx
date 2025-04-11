@@ -4,9 +4,11 @@ import { Container } from "@/components/shared/Container";
 import placeholderimage from "@/assets/placeholderimg.png";
 import { Button, ButtonType } from "@/components/checkout/Button/Button";
 import { useCheckout } from "@/application/providers/CheckoutProvider";
+import { useRouter } from "next/router";
 
 export default function Cart() {
   const { cart } = useCheckout();
+  const router = useRouter();
 
   const calculateItemTotal = (): number => {
     return cart.reduce((total, item) => total + Number(item.price), 0);
@@ -67,7 +69,11 @@ export default function Cart() {
           </div>
         </div>
         <div className="flex flex-col items-center w-full p-4">
-          <Button placeholder="Check Out" style={ButtonType.PRIMARY} />
+          <Button
+            placeholder="Check Out"
+            style={ButtonType.PRIMARY}
+            onClick={() => router.push("/checkout/address")}
+          />
         </div>
       </Container>
     </div>
